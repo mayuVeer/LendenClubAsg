@@ -41,3 +41,9 @@ class StudentDetailView(viewsets.ModelViewSet):
              bulk_list_stud_rel.append(rel_created)
          StudentRelative.objects.bulk_create(bulk_list_stud_rel)
          return Response(StudentSerializer.data)
+@api_view(['GET'])
+def statementTwo(request,username):
+    name = username
+    students = Student.objects.distinct().prefetch_related('class_student').filter(class_student__class_Teachers__teacher_name=name)
+    student_serializer = StudentSerializer(students,many=True)
+    return Response(student_serializer.data)

@@ -16,7 +16,7 @@ class Classroom(models.Model):
         db_table = "classroom"
 
 class Subject(models.Model):
-    subject_name = models.CharField(max_length=10,unique=True,null=False)
+    subject_name = models.CharField(max_length=30,unique=True,null=False)
     subject_chapters = models.IntegerField(null=False)
     subject_total_duration = models.IntegerField(null=False)
     subject_per_class_duration = models.IntegerField(null=False)
@@ -26,9 +26,9 @@ class Subject(models.Model):
         db_table = "subject"
 
 class Teacher(models.Model):
-    teacher_name = models.CharField(max_length=10,null=False,unique=False)
-    teacher_DOJ = models.DateTimeField(auto_now_add=True,null=False,unique=False)
-    teacher_salary = models.DecimalField(max_digits=8,decimal_places=2)
+    teacher_name = models.CharField(max_length=20,null=False,unique=False)
+    teacher_DOJ = models.DateTimeField(null=False,unique=False)
+    teacher_salary = models.DecimalField(max_digits=10,decimal_places=2)
     classroom = models.ManyToManyField(Classroom, related_name="class_Teachers")
     subject = models.ManyToManyField(Subject, related_name="subject_Teachers")
     class Meta:

@@ -9,5 +9,5 @@ router.register(r'teacher_detail',views.TeacherDetailView)
 router.register(r'student_detail',views.StudentDetailView)
 urlpatterns = [
     path('',include(router.urls)),
-    #path('teacher_detail',views.teacherDetailFunc)
+    path('statement-two/<str:username>',views.statementTwo)
 ]
